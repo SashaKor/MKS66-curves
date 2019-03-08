@@ -11,18 +11,26 @@ import math
 
 #
 def make_bezier():
+    t= new_matrix()
+    ident(t)
+    #
     #[[],[1,1,1,1],[0,0,1,0],[3,2,1,0]]
-    pass
+    return t
 
 #
 def make_hermite():
+    t= new_matrix()
+    ident(t)
+    #parametrics for x and y
+    #using generate_curve_coefs to find the a,b,c,d
     #[[0,0,0,1],[1,1,1,1],[0,0,1,0],[3,2,1,0]]
-    pass
+    return t
 
 #
 def generate_curve_coefs( p0, p1, p2, p3, t ):
     a= -p0+3*p1-3*p2+p3
-    b=
+    b= 0
+    pass
 
 
 def make_translate( x, y, z ):
