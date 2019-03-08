@@ -9,14 +9,20 @@ z0  z1  ... zn
 """
 import math
 
+#
 def make_bezier():
+    #[[],[1,1,1,1],[0,0,1,0],[3,2,1,0]]
     pass
 
+#
 def make_hermite():
+    #[[0,0,0,1],[1,1,1,1],[0,0,1,0],[3,2,1,0]]
     pass
 
+#
 def generate_curve_coefs( p0, p1, p2, p3, t ):
-    pass
+    a= -p0+3*p1-3*p2+p3
+    b=
 
 
 def make_translate( x, y, z ):
@@ -71,7 +77,7 @@ def print_matrix( matrix ):
             s+= str(matrix[c][r]) + ' '
         s+= '\n'
     print s
-    
+
 #turn the paramter matrix into an identity matrix
 #you may assume matrix is square
 def ident( matrix ):
