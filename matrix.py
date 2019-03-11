@@ -9,9 +9,9 @@ z0  z1  ... zn
 """
 import math
 
-#
+# bezier curve inverse
 def make_bezier():
-
+    return [[1,0,0,0],[-3,3,0,0],[3,-6,3,0],[-1,3,-3,1]]
 
 # cubic hermite curve inverse
 def make_hermite():
@@ -21,9 +21,22 @@ def make_hermite():
 # coefficients to be applied to edge matrix
 def generate_curve_coefs( p0, p1, p2, p3, t ):
     #m1= set #m2= p0,p1,r0,r1
-    m2= [p0,p1,p2,p3]
-    matrix_mult(t,m2)
-    return m2
+    #t is the curve_type
+    if t == "bezier":
+        bez= make_bezier()
+        m2= [p0,p1,p2,p3]
+        matrix_mult(bez,m2)
+        return m2
+
+    elif t == "hermite":
+        herm= make_hermite()
+        m2= [p0,p1,p2,p3]
+        matrix_mult(herm,m2)
+        return m2
+
+    else:
+        return
+
 
 
 def make_translate( x, y, z ):

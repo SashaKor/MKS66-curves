@@ -1,20 +1,22 @@
 from display import *
 from matrix import *
-
+import math
 
 def add_circle( points, cx, cy, cz, r, step ):
     #edge matrix = points
     #separate case
+    cx
     pass
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     if curve_type== "hermite":
-        herm= make_hermite()
-        coefs= generate_curve_coefs() #have to do it for x and y
-
+        coefsX= generate_curve_coefs(x0,x1,x2,x3,"hermite") #have to do it for x and y
+        coefsY= generate_curve_coefs(y0,y1,y2,y3,"hermite")
+        #mechanism for adding edge
     if curve_type== "bezier":
         bez= make_bezier()
-        coefs= generate_curve_coefs()
+        coefsX= generate_curve_coefs(,"bezier")
+        coefsY= generate_curve_coefs(,"bezier") #have to do it for x and y
 
 
 def draw_lines( matrix, screen, color ):
