@@ -11,31 +11,25 @@ import math
 
 # bezier curve inverse
 def make_bezier():
-    return [[1,0,0,0],[-3,3,0,0],[3,-6,3,0],[-1,3,-3,1]]
+    return [[-1, 3, -3, 1],[3, -6, 3, 0],[-3, 3, 0, 0],[1, 0, 0, 0]]
 
 # cubic hermite curve inverse
 def make_hermite():
     #[P0,P1,R0,R1]
-    return [[2,-2,1,1],[-3,3,-2,-1],[0,0,1,0],[1,0,0,0]]
+    return [[2,-3,0,1],[-2,3,0,0],[1,-2,1,0],[1,-1,0,0]]
 
 # coefficients to be applied to edge matrix
 def generate_curve_coefs( p0, p1, p2, p3, t ):
     #m1= set #m2= p0,p1,r0,r1
     #t is the curve_type
+    m1=[]
     if t == "bezier":
-        bez= make_bezier()
-        m2= [p0,p1,p2,p3]
-        matrix_mult(bez,m2)
-        return m2
-
-    elif t == "hermite":
-        herm= make_hermite()
-        m2= [p0,p1,p2,p3]
-        matrix_mult(herm,m2)
-        return m2
-
+        m1= make_bezier()
     else:
-        return
+        m1= make_hermite()
+    m2= [[p0,p1,p2,p3]]
+    matrix_mult(m1,m2)
+    return m2
 
 
 
