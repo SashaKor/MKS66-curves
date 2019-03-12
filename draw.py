@@ -2,26 +2,36 @@ from display import *
 from matrix import *
 import math
 
+#adds circle to edge matrix
 def add_circle( points, cx, cy, cz, r, step ):
-    #edge matrix = points
-    #separate case
-    cx
-    pass
+    angle = 2 * math.pi / step
+    cur_x = r + cx
+    cur_y = cy
+    for i in range(1, step + 1):
+        next_x = r * math.cos(angle * i) + cx
+        next_y = r * math.sin(angle * i) + cy
+        add_edge(points, cur_x, cur_y,cz, next_x, next_y, cz)
+        cur_x = next_x
+        cur_y = next_y
 
+#adds either bezier or hermite
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
-    if curve_type== "hermite":
-        coefsX= generate_curve_coefs(x0,x1,x2,x3,"hermite") #have to do it for x and y
-        coefsY= generate_curve_coefs(y0,y1,y2,y3,"hermite")
-        #mechanism for adding edge
-    if curve_type== "bezier":
-        bez= make_bezier()
-        coefsX= generate_curve_coefs(,"bezier")
-        coefsY= generate_curve_coefs(,"bezier") #have to do it for x and y
-
+    cur_x = x0
+    cur_y = y0
+    coef_x = generate_curve_coefs(x0, x1, x2, x3, curve_type)
+    coef_y = generate_curve_coefs(y0, y1, y2, y3, curve_type)
+    t = 1.0/step
+    for i in range(1, step + 1):
+        next_x = coef_x[0] * math.pow(i * t, 3) + coef_x[1] * math.pow(i * t,2) + coef_x[2] * i * t + coef_x[3]
+        next_y = coef_y[0] * math.pow(i * t, 3) + coef_y[1] * math.pow(i * t,2) + coef_y[2] * i * t + coef_y[3]
+        add_edge(points, cur_x, cur_y, 0, next_x, next_y, 0)
+        cur_x = next_x
+        cur_y = next_y
+        #print(next_x, next_y)
 
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:
-        print 'Need at least 2 points to draw'
+        print('Need at least 2 points to draw')
         return
 
     point = 0

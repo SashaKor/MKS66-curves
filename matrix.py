@@ -27,7 +27,7 @@ def generate_curve_coefs( p0, p1, p2, p3, t ):
         m1= make_bezier()
     else:
         m1= make_hermite()
-    m2= [[p0,p1,p2,p3]]
+    m2= [p0,p1,p2,p3]
     matrix_mult(m1,m2)
     return m2
 
@@ -84,7 +84,7 @@ def print_matrix( matrix ):
         for c in range( len(matrix) ):
             s+= str(matrix[c][r]) + ' '
         s+= '\n'
-    print s
+    print(s)
 
 #turn the paramter matrix into an identity matrix
 #you may assume matrix is square
