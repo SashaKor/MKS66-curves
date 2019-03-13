@@ -22,12 +22,12 @@ def make_hermite():
 def generate_curve_coefs( p0, p1, p2, p3, t ):
     #m1= set #m2= p0,p1,r0,r1
     #t is the curve_type
-    m1=[]
+    m1=None
     if t == "bezier":
         m1= make_bezier()
     else:
         m1= make_hermite()
-    m2= [p0,p1,p2,p3]
+    m2= [[p0,p1,p2,p3]]
     matrix_mult(m1,m2)
     return m2
 

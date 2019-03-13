@@ -18,8 +18,8 @@ def add_circle( points, cx, cy, cz, r, step ):
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     cur_x = x0
     cur_y = y0
-    coef_x = generate_curve_coefs(x0, x1, x2, x3, curve_type)
-    coef_y = generate_curve_coefs(y0, y1, y2, y3, curve_type)
+    coef_x = generate_curve_coefs(x0, x1, x2, x3, curve_type)[0] #necessary to access inner list of coefs
+    coef_y = generate_curve_coefs(y0, y1, y2, y3, curve_type)[0]
     t = 1.0/step
     for i in range(1, step + 1):
         next_x = coef_x[0] * math.pow(i * t, 3) + coef_x[1] * math.pow(i * t,2) + coef_x[2] * i * t + coef_x[3]
@@ -27,7 +27,6 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         add_edge(points, cur_x, cur_y, 0, next_x, next_y, 0)
         cur_x = next_x
         cur_y = next_y
-        #print(next_x, next_y)
 
 def draw_lines( matrix, screen, color ):
     if len(matrix) < 2:
